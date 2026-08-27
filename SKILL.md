@@ -1,13 +1,11 @@
 ---
 name: product-design-job-search-workflow
-description: A screening-first job search system for product designers at any level. On first use it interviews the user about their level, comp floor, geography, and dealbreakers, then writes those into a reusable profile. After that, use it whenever the user pastes a job link or JD, asks whether a role is worth applying to, asks for a tailored resume or cover letter, wants to update their application tracker, or wonders why they are not getting callbacks. Trigger on a bare job URL with no other context, and on phrases like "should I apply to this", "screen this", "worth it?", "tailor my resume for", "set up my job search".
+description: A screening-first job search system for product designers at any level. On first use it interviews the user about their level, comp floor, geography, and dealbreakers, then writes those into a reusable profile. After that, use it whenever the user pastes a job link or JD, asks whether a role is worth applying to, asks for a tailored resume or cover letter, or wants to update their application tracker. Trigger on a bare job URL with no other context, and on phrases like "should I apply to this", "screen this", "worth it?", "tailor my resume for", "set up my job search".
 ---
 
 # Job Search Workflow
 
 A screening-first system for product designers running a real search. Most wasted effort in a job search goes to roles that were never going to work. Screen hard, apply narrow, tailor properly, track everything.
-
-The screen only works with the user's actual numbers. A generic screen approves roles that fail their real dealbreakers, which is the expensive failure mode. So the first thing this skill does is get those numbers.
 
 ## Step 1: Check for a profile
 
