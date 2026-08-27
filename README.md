@@ -1,9 +1,6 @@
 # Product Design Job Search Workflow
 
 A Claude skill that screens job postings against your actual criteria instead of generic advice.
-
-Most of the waste in a job search happens before you apply, on roles that were never going to work. This runs a seven-step screen on every posting and stops at the first failure, so a role that fails on comp never gets an hour of resume tailoring.
-
 Built for product designers at any level. The thresholds shift depending on where you are in your career, and the intake asks accordingly.
 
 ## What it does
@@ -29,8 +26,6 @@ Open a new chat and say:
 
 > Set up my job search
 
-A greeting will not trigger it. Skills load when the request matches, and a description that fired on "hi" would fire on everything. Pasting a job link works too.
-
 Intake takes about ten minutes. Have your resume handy, since most of the profile gets drafted from it and you just correct the draft.
 
 ## Run it inside a Project
@@ -48,9 +43,3 @@ references/fetch-notes.md     job board fetch behavior
 ```
 
 Read `SKILL.md` before installing. It is plain text and it contains no scripts. Worth doing with any skill that asks about your salary.
-
-## Notes
-
-This came out of a real search, then had the personal specifics stripped out. Nothing in it knows anything about a particular person until it asks you.
-
-Issues and corrections welcome. The screen will be wrong for some people and some roles, and knowing where is more useful than agreement.
