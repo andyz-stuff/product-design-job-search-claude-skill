@@ -1,45 +1,61 @@
 # Product Design Job Search Workflow
 
-A Claude skill that screens job postings against your actual criteria instead of generic advice.
-Built for product designers at any level. The thresholds shift depending on where you are in your career, and the intake asks accordingly.
+A Claude skill that screens job postings against your real criteria, then tailors your resume only for roles that pass.
+
+Most of the waste in a job search happens before you apply, on roles that were never going to work. This runs a seven-step screen on every posting and stops at the first failure, so a role that fails on comp never gets an hour of tailoring.
+
+For UX and product designers at any level, junior to principal, searching in the US and Canada.
 
 ## What it does
 
-- **Interviews you first.** Level, comp floor, geography, days in office, dealbreakers. Writes them into a profile it reuses.
-- **Screens postings.** Paste a link or the job text. You get a yes or a skip with the failing criterion named.
-- **Tailors your resume.** Reordering and re-cutting, never inventing. Includes the rule about never claiming a number you cannot defend in an interview.
-- **Decides on cover letters.** Writes one only when there is a real hook, and says so when there is not.
-- **Keeps a tracker.** One markdown file, updated as responses come in.
-
-Also includes fetch workarounds for job boards that block direct access, including Ashby, Apple, and Workday.
+- **Interviews you once.** Level, comp floor, geography, days in office, dealbreakers. Saves them to a profile it reuses.
+- **Screens postings.** Paste a link or the job text. You get a four-line verdict: apply (with tier) or skip (with the failing step).
+- **Tailors your resume.** Shows only what changed from your master resume. Reorders and re-cuts, never invents.
+- **Builds the PDF.** A script that auto-fits to your page limit and checks the text layer for banned characters and phrases before you send it.
+- **Decides on cover letters.** Writes one only when there is a real hook.
+- **Keeps a tracker.** One markdown file in three piles: in progress, active, closed.
+- **Plans outreach.** Apply, then a peer question to an IC designer, then the design lead a few days later.
 
 ## Install
 
 1. Download `product-design-job-search-workflow.zip` from this repo.
 2. In Claude, go to **Customize → Skills**, click **+**, then **+ Create skill**, and upload the zip.
-3. Make sure **code execution and file creation** is enabled in settings. If it is off, the Skills menu is greyed out.
-4. Start a **new** conversation. Claude reads skills at session start, so it will not appear in a chat that was already open.
+3. Turn on **code execution and file creation** in settings. If it is off, the Skills menu is greyed out.
+4. Start a **new** conversation. Skills load at session start.
+
+**Updating from v1:** delete the old skill in Customize → Skills, then upload the new zip. Your `job-search-profile.md` keeps working. v2 reads a few new optional sections (passes, referrals, resume settings); intake will offer to add them.
 
 ## Getting started
 
-Open a new chat and say:
+Open a new chat inside a Claude Project and say:
 
 > Set up my job search
 
-Intake takes about ten minutes. Have your resume handy, since most of the profile gets drafted from it and you just correct the draft.
+Pasting a job link works too. A greeting will not trigger it.
 
-## Run it inside a Project
+Intake takes about 10 minutes. Have your resume ready; most of the profile is drafted from it and you correct the draft.
 
-Your criteria get saved to a file called `job-search-profile.md`. For that to persist across conversations, work inside a Claude Project and keep the file there. Without a Project, intake runs again every time.
+## Use a Project
 
-## What's in here
+Your criteria live in `job-search-profile.md`, your master resume in `resume_master.json`, and your tracker in `job-tracker-YYYY-MM-DD.md`. Keep all three in a Claude Project so they persist. Without a Project, intake runs every time.
+
+## Files
 
 ```
-SKILL.md                      the workflow: the screen, tiers, cover letter policy, tracker
-references/intake.md          the first-run interview and level calibration
-references/profile-schema.md  structure of the profile file
-references/resume-system.md   tailoring rules and the PDF build
-references/fetch-notes.md     job board fetch behavior
+product-design-job-search-workflow/
+  SKILL.md                     the screen, output rules, tiers, workflow
+  references/intake.md         first-run interview, level calibration
+  references/profile-schema.md profile structure
+  references/resume-system.md  tailoring rules, build, verification
+  references/tracker.md        tracker format and edit rules
+  references/fetch-notes.md    job board fetch behavior
+  scripts/resume_builder.py    PDF generator and validator
 ```
 
-Read `SKILL.md` before installing. It is plain text and it contains no scripts. Worth doing with any skill that asks about your salary.
+`scripts/resume_builder.py` is the only code. It uses ReportLab, reads your content JSON, and writes a PDF. Its one network call downloads the open-source Inter font from its GitHub release; it falls back to Helvetica if that is blocked. Read it before installing, as with any skill that handles your salary.
+
+## Notes
+
+Built from a real search, with personal details removed. It knows nothing about you until intake.
+
+Issues and corrections welcome. The screen will be wrong for some people and some roles, and knowing where is more useful than agreement.
